@@ -7,13 +7,13 @@ var lowerCase;// Weather it's lower case.
 var passwordNumber; // Numbers for the generate password.
 
 // My varibles that contain strings of letters, numbers, and characters to generate a random password.
-var upperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+var bigCray = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 
-var lowerCase =["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+var lilCray = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 
-var passwordNumber  = [1,2,3,4,5,6,7,8,9,0];
+var numRay  = [1,2,3,4,5,6,7,8,9,0];
 
-var specialCharacter =  ["!","#",'"',"$","%","&","'","(",")","*","+","-",".","/",":",";","<","=",">","?","@","[","]","_","{","|","}","`","~"];
+var specialCray =  ["!","#",'"',"$","%","&","'","(",")","*","+","-",".","/",":",";","<","=",">","?","@","[","]","_","{","|","}","`","~"];
 
 
 // this is my function to get my random password generated. 
@@ -22,32 +22,39 @@ function generatePassword() {
 
   if(passwordLength >= 8 && passwordLength <= 128){
     confirmPrompt();
-    result="";
-    length=0;
-      if(upperCase === true && length<passwordLength){
-        result = result + upperCase[Math.floor(Math.random() *26)]
+    result = "";
+    length = 0;
+    while (length < passwordLength){
+      if(upperCase === true && length < passwordLength){
+        result = result + bigCray[Math.floor(Math.random() *26)]
         length++
       };
+      
       if (lowerCase === true && length < passwordLength){
-        result = result + lowerCase[Math.floor(Math.random() *26)]
-        length++
+        result = result + lilCray[Math.floor(Math.random() *26)]
+       length++
       };
+
       if (passwordNumber === true && length < passwordLength){
-        result = result + passwordNumber[Math.floor(Math.random()*10)]
-        length++
+       result = result + numRay[Math.floor(Math.random()*10)]
+       length++
       };
+
       if (specialCharacter === true && length < passwordLength){
-        result = result + specialCharacter[Math.floor(Math.random()*29)]
-        length++
+       result = result + specialCray[Math.floor(Math.random()*29)]
+       length++
       };
-  } else{
-    alert("Sorry that amount doesn't meet our password requirements.");
-    generatePassword();
-  }
+
+    }
+  
+  }else {
+    alert("Sorry that amount doesn't meet our password requirements.");//let them know they dont meet password requirements
+  };
+
   return result;
 };
 
-
+//Ask the users questions in a pop-up box
 function confirmPrompt(){
   upperCase = confirm("Would you like to have Upper case letters in your password?");
 
@@ -60,16 +67,16 @@ function confirmPrompt(){
 
 
 // Write password to the #password input
-function writePassword(event) {
+function writePassword() {
+
   var password = generatePassword();
 
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 
-  event.preventDefault();
-}
+};
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-generateBtn.addEventListener("click",password);
+generateBtn.addEventListener("click", password);
